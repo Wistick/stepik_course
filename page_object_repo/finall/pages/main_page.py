@@ -13,5 +13,9 @@ class MainPage(BasePage):
         alert = self.driver.switch_to.alert
         alert.accept()
 
+    def go_to_basket_page(self):
+        link = self.driver.find_element(*MainPageLocators.BASKET_LINK)
+        link.click()
+
     def should_be_login_link(self):
         assert self.is_element_present(*MainPageLocators.LOGIN_LINK), 'Login link is not presented'

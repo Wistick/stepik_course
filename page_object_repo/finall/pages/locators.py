@@ -8,6 +8,7 @@ class BasePageLocators:
 
 class MainPageLocators:
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    BASKET_LINK = (By.CSS_SELECTOR, 'span.btn-group a.btn.btn-default')
 
 
 class LoginPageLocators:
@@ -27,3 +28,9 @@ class ProductPageLocators:
     ITEM_PRICE = (By.CSS_SELECTOR, '.product_main .price_color')
     BASKET_PRICE = (By.CSS_SELECTOR, '.alert-info .alertinner strong')
     BASKET_NAME = (By.CSS_SELECTOR, '.alertinner strong')
+    BASKET_BUTTON = (By.CSS_SELECTOR, 'span.btn-group a.btn.btn-default')
+
+
+class BasketPageLocators:
+    BASKET_EMPTY = (By.CSS_SELECTOR, '.content #content_inner > p')
+    BASKET_HAS_ITEM_AVAILABILITY = (By.CSS_SELECTOR, '.availability.instock')

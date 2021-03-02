@@ -1,5 +1,6 @@
 import pytest
 from .pages.product_page import ProductPage
+from .pages.basket_page import BasketPage
 
 
 def test_guest_can_add_item_to_basket(driver):
@@ -24,6 +25,16 @@ def test_guest_can_go_to_login_page_from_product_page(driver):
     page = ProductPage(driver, link)
     page.open()
     page.go_to_login_page()
+
+
+def test_guest_cant_see_product_in_basket_opened_from_product_page(driver):
+    link = 'http://selenium1py.pythonanywhere.com/catalogue/the-city-and-the-stars_95/'
+    page = ProductPage(driver, link)
+    page.open()
+    page.go_to_basket_page()
+    basket_page = BasketPage(driver, driver.current_url)
+    basket_page.should_be_basket_url()
+    basket_page.should_be_empty_basket()
 
 
 xfile = 7

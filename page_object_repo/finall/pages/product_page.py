@@ -4,6 +4,10 @@ from .locators import ProductPageLocators
 
 class ProductPage(BasePage):
 
+    def go_to_basket_page(self):
+        link = self.driver.find_element(*ProductPageLocators.BASKET_BUTTON)
+        link.click()
+
     def should_be_product_page(self):
         self.should_be_promo_url()
         self.should_be_basket_button()
