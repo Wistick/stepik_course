@@ -10,8 +10,6 @@ class MainPage(BasePage):
     def go_to_login_page(self):
         link = self.driver.find_element(*MainPageLocators.LOGIN_LINK)
         link.click()
-        alert = self.driver.switch_to.alert
-        alert.accept()
 
     def go_to_basket_page(self):
         link = self.driver.find_element(*MainPageLocators.BASKET_LINK)

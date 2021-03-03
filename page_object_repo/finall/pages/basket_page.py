@@ -3,7 +3,7 @@ from .locators import BasketPageLocators
 
 
 class BasketPage(BasePage):
-    def should_basket_page(self):
+    def should_be_basket_page(self):
         self.should_be_basket_url()
 
     def should_be_empty_basket(self):

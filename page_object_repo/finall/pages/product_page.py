@@ -8,30 +8,28 @@ class ProductPage(BasePage):
         link = self.driver.find_element(*ProductPageLocators.BASKET_BUTTON)
         link.click()
 
-    def should_be_product_page(self):
-        self.should_be_promo_url()
-        self.should_be_basket_button()
-
-    def should_be_message_alert(self):
-        self.should_be_correct_message_alert()
-
     def client_add_to_basket(self):
         link = self.driver.find_element(*ProductPageLocators.BASKET_BUTTON_ADD)
         link.click()
 
+    def should_be_product_page(self):
+        self.should_be_catalogue_url()
+        self.should_be_basket_button()
+
     def should_be_basket_button(self):
         assert self.is_element_present(*ProductPageLocators.BASKET_BUTTON_ADD), 'Basket button is not presented'
 
-    def should_be_promo_url(self):
-        assert '?promo=offer' in self.driver.current_url, 'Wrong URL! Should be promo page'
+    def should_be_catalogue_url(self):
+        assert 'catalogue' in self.driver.current_url, 'Wrong URL Should be catalogue page'
+        # assert '?promo=offer' in self.driver.current_url, 'Wrong URL! Should be promo page'
         # assert '?promo=newYear' in self.driver.current_url, 'Wrong URL! Should be promo page'
 
     def should_be_correct_message_alert(self):
         assert self.is_element_present(*ProductPageLocators.ITEM_NAME), 'Item name is not presented'
         assert self.is_element_present(*ProductPageLocators.ITEM_PRICE), 'Item price is not presented'
 
-        product_name = self.driver.find_element(*ProductPageLocators.ITEM_NAME).text
-        product_price = self.driver.find_element(*ProductPageLocators.ITEM_PRICE).text
+        item_name = self.driver.find_element(*ProductPageLocators.ITEM_NAME).text
+        item_price = self.driver.find_element(*ProductPageLocators.ITEM_PRICE).text
 
         assert self.is_element_present(*ProductPageLocators.BASKET_NAME), 'Basket item name is not presented'
         assert self.is_element_present(*ProductPageLocators.BASKET_PRICE), 'Basket item price is not presented'
@@ -39,10 +37,10 @@ class ProductPage(BasePage):
         basket_name = self.driver.find_element(*ProductPageLocators.BASKET_NAME).text
         basket_price = self.driver.find_element(*ProductPageLocators.BASKET_PRICE).text
 
-        print(f'\nItem name {product_name} = {basket_name}\nItem price {product_price} = {basket_price}\n')
+        print(f'\nItem name {item_name} = {basket_name}\nItem price {item_price} = {basket_price}\n')
 
-        assert product_name == basket_name, 'Item name does not match!'
-        assert product_price == basket_price, 'Item price does not match'
+        assert item_name == basket_name, 'Item name does not match!'
+        assert item_price == basket_price, 'Item price does not match!'
 
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.BASKET_NAME), 'Success message is presented, ' \

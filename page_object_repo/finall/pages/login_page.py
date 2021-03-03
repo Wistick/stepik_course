@@ -17,9 +17,15 @@ class LoginPage(BasePage):
         assert self.is_element_present(*LoginPageLocators.LOGIN_BUTTON), 'Login button is not presented'
 
     def should_be_register_form(self):
-        assert self.is_element_present(*LoginPageLocators.REG_EMAIL), 'Registration Email input filed is not presented'
-        assert self.is_element_present(*LoginPageLocators.REG_PASSWORD), 'Registration password input filed is not ' \
+        assert self.is_element_present(*LoginPageLocators.REG_EMAIL), 'Registration Email input field is not presented'
+        assert self.is_element_present(*LoginPageLocators.REG_PASSWORD), 'Registration password input field is not ' \
                                                                          'presented'
         assert self.is_element_present(*LoginPageLocators.REG_PASSWORD_CONF), 'Registration confirm password input ' \
-                                                                              'filed is not presented'
+                                                                              'field is not presented'
         assert self.is_element_present(*LoginPageLocators.REG_BUTTON), 'Registration button is not presented'
+
+    def register_new_user(self, email, password):
+        self.driver.find_element(*LoginPageLocators.REG_EMAIL).send_keys(email)
+        self.driver.find_element(*LoginPageLocators.REG_PASSWORD).send_keys(password)
+        self.driver.find_element(*LoginPageLocators.REG_PASSWORD_CONF).send_keys(password)
+        self.driver.find_element(*LoginPageLocators.REG_BUTTON).click()
